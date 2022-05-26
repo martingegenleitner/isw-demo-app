@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: isw-demo-app
+  name: isw-demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: isw-demo-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: isw-demo-app
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - image: thalesgegmar/isw-demo-app:latest
+          name: isw-demo-app
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: uploads
+              mountPath: /var/www/html/upload
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: cte-claim
+#            claimName: actual-storage-claim # for testing with clear-storage
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: isw-demo-app
+spec:
+  type: NodePort
+  selector:
+    app: isw-demo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
