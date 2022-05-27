@@ -1,9 +1,28 @@
-FROM php:apache
+# Use a builder container to compile and link all assets into a single binary
+FROM golang:latest as builder
 
-COPY src/ /var/www/html/
+# Create a working directory and change into it
+WORKDIR /go/src/app
 
-RUN apt-get update && apt-get upgrade -y
+# Add the required files for building the final executable
+COPY src-go/ /go/src/app/
 
-RUN chown www-data:www-data /var/www/html/upload
+# Run the build
+RUN CGO_ENABLED=0 go build -ldflags '-w -s' -o app .
 
+##################
+
+# Create an empty container
+FROM ubuntu
+
+# Create a directory for containing all relevant resources
+WORKDIR /srv
+
+# Copy the built binary from the builder container into the final image
+COPY --from=builder /go/src/app/ /srv/
+
+# Set a default port for the service to be exposed
 EXPOSE 80
+
+# Start the service by calling the binary
+ENTRYPOINT [ "./app" ]
