@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: cte-claim
   annotations:
-    ctePolicy: csi-pol
+    ctePolicy: op-encrypt-only
 spec:
   storageClassName: cte-csi-sc
   accessModes:

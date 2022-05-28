@@ -14,8 +14,7 @@ spec:
     - vers=4
   nfs:
     path: /
-#    server: 10.0.4.94 # TO BE SET !!!
-    server: 10.10.0.2 # TO BE SET !!!
+    server: 10.10.0.2
 
 ---
 apiVersion: v1

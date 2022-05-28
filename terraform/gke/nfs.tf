@@ -15,6 +15,7 @@ resource "google_compute_instance" "nfs_server" {
 
   network_interface {
     subnetwork = google_compute_subnetwork.subnet.self_link
+    network_ip = "10.10.0.2"
     access_config {
       // Ephemeral public IP
     }

@@ -33,7 +33,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: uploads
-              mountPath: /var/www/html/upload
+              mountPath: /srv/upload
       volumes:
         - name: uploads
           persistentVolumeClaim:

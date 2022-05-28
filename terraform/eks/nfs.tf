@@ -41,6 +41,7 @@ resource "aws_instance" "nfs_server" {
 
 resource "aws_network_interface" "nfs_server_nic_pub" {
   subnet_id       = element(module.vpc.public_subnets, 0)
+  private_ips     = ["10.0.4.119"]
   security_groups = [aws_security_group.nfs_server_ports.id]
 
   tags = {

@@ -110,3 +110,16 @@ gcloud container clusters get-credentials $(terraform output -raw kubernetes_clu
 # When you are finished using the GKE, destroy it to reduce costs
 terraform destroy
 ```
+
+## Create KMS in Azure
+
+```shell
+# List available images/versions of k170v
+az vm image list --offer cm_k170v --all
+
+# Accept the license terms
+az vm image terms accept --urn <image_urn>
+
+# Create vm from image
+az vm create --resource-group MartinGegenleitner --name isw-cm-2 --image thalesdiscplusainc1596561677238:cm_k170v:ciphertrust_manager:2.7.6808 --size Standard_DS3_v2 --admin-username ksadmin --ssh-key-name isw-cm-1_key --public-ip-sku Basic --vnet-name isw --location northeurope --subnet default
+```
