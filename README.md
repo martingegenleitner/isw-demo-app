@@ -2,6 +2,8 @@
 
 Small PHP Demo App that stores and displays a simple picture. It will be used to demonstrate transparent encryption of application data in container environments with THALES CipherTrust Transparent Encryption for Container Storage Interface (CTE CSI) on Kubernetes.
 
+Watch the [video](demo-video.mkv) to see the final setup in action!
+
 ## Run the app locally
 
 ```shell
