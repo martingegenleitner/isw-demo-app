@@ -1,5 +1,10 @@
 package main
 
+// This code is shamelessly stolen from...
+// * https://github.com/kataras/iris/blob/master/_examples/file-server/upload-file/main.go
+// * https://github.com/kataras/iris/blob/master/_examples/file-server/basic/main.go
+// * https://www.iris-go.com/docs/#/?id=single-file
+
 import (
 	"crypto/md5"
 	"fmt"
