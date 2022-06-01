@@ -7,6 +7,6 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
 parameters:
-  key_manager_addr: 20.223.197.34
+  key_manager_addr: 20.223.197.34 # TO BE SET
   k8_storage_group: isw-storage-group
   registration_token: jLCpf9GL4XRmJYSV6EBQqAJwcDvLvBWrc6H1f2sOlCd5vyKtCiWkKU7hzgEQncSU # TO BE SET
